@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import random
+from collections import Counter
 
 seq = list[int]
 
@@ -10,18 +11,13 @@ def make_code() -> seq:
 def exact_matches(c: seq, g: seq) -> int:
     return sum(a == b for a, b in zip(c, g))
 
-def misses(c: seq, g: seq):
-    nc, ng = [], []
+def near_matches(c: seq, g: seq):
+    nc, ng = Counter(), Counter()
     for a, b in zip(c, g):
         if a != b:
-            nc.append(a)
-            ng.append(b)
-    res = 0
-    for a in ng:
-        if a in nc:
-            nc.remove(a)
-            res += 1
-    return res
+            nc[a] += 1
+            ng[b] += 1
+    return sum((nc & ng).values())
 
 def make_guess():
     s = input("Please guess: ")
@@ -33,7 +29,6 @@ def main():
     while guess != code:
         guess = make_guess()
         print(exact_matches(code[:], guess[:]))
-        print(misses(code[:], guess[:]))
-        continue
+        print(near_matches(code[:], guess[:]))
 
 main()
