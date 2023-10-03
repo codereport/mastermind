@@ -12,11 +12,8 @@ def exact_matches(c: seq, g: seq) -> int:
     return sum(a == b for a, b in zip(c, g))
 
 def near_matches(c: seq, g: seq):
-    nc, ng = Counter(), Counter()
-    for a, b in zip(c, g):
-        if a != b:
-            nc[a] += 1
-            ng[b] += 1
+    nc = Counter(a for a, b in zip(c, g) if a != b)
+    ng = Counter(b for a, b in zip(c, g) if a != b)
     return sum((nc & ng).values())
 
 def make_guess():
