@@ -1,13 +1,13 @@
-MakeCode     ← ?4⍴8
+MakeCode     ← {?4⍴8}
 ExactMatches ← +/=
 NearMatches ← {
-    m ← ⍺≠⍵       ⍝ Mask
+    m ← ⍺≠⍵        ⍝ Mask
     c ← +/(⍳8)∘.=⊢ ⍝ Counter
     ⍺(+/⌊⍥(c m/⊢))⍵
 }
 
 Turn ← {
-    ⍝ ⍵ ←→ code
+    ⍝ ⍵: code, g: guess
     ⎕ ← 'Please guess: ' ⋄ g ← ⍎⍞
     ⎕ ← ⍵ ExactMatches g
     ⎕ ← ⍵ NearMatches g
@@ -16,6 +16,6 @@ Turn ← {
 }
 
 Main ← {
-    c ← MakeCode
+    c ← MakeCode ⍬
     Turn c
 }
