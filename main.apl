@@ -6,14 +6,14 @@ NearMatches ← {
     ⍺(+/⌊⍥(c m/⊢))⍵
 }
 
-∇ Turn c;g
-    g←''
-    :While ~g≡c
-        ⎕ ← 'Please guess: ' ⋄ g ← ⍎⍞
-        ⎕ ← c ExactMatches g
-        ⎕ ← c NearMatches g
-    :EndWhile
-∇
+Turn ← {
+    ⍝ ⍵ ←→ code
+    ⎕ ← 'Please guess: ' ⋄ g ← ⍎⍞
+    ⎕ ← ⍵ ExactMatches g
+    ⎕ ← ⍵ NearMatches g
+    g≡⍵:'Game over'
+    ∇ ⍵
+}
 
 Main ← {
     c ← MakeCode
