@@ -9,8 +9,9 @@ NearMatches ← {
 Turn ← {
     ⍝ ⍵: code, g: guess
     ⎕ ← 'Please guess: ' ⋄ g ← ⍎⍞
-    ⎕ ← ⍵ ExactMatches g
-    ⎕ ← ⍵ NearMatches g
+    x ← ⍵ ExactMatches g
+    n ← ⍵ NearMatches g
+    ⎕ ← x n/'🔴⚪'
     g≡⍵:'Game over'
     ∇ ⍵
 }
