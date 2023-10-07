@@ -25,7 +25,8 @@ def main():
     guess = ""
     while guess != code:
         guess = make_guess()
-        print(exact_matches(code[:], guess[:]))
-        print(near_matches(code[:], guess[:]))
+        x = exact_matches(code[:], guess[:])
+        n = near_matches(code[:], guess[:])
+        print("🔴" * x + "⚪" * n)
 
 main()
