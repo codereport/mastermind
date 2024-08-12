@@ -3,7 +3,7 @@ ExactMatches ← +´=
 FreqCount    ← +´˘(1+↕8)=⌜⊢
 NearMatches  ← +´(≠/⊣)⌊○FreqCount≠/⊢
 
-# Input/Output
+# Input / Output
 Parse    ← •BQN˘1↕(¬' '⊸=)⊸/
 MakeCode ← 1+·•rand.Range¨4⥊8⌊⊢
 Turn     ← {
