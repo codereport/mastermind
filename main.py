@@ -3,15 +3,13 @@
 import random
 from collections import Counter
 
-seq = list[int]
-
-def make_code() -> seq:
+def make_code():
     return [random.randint(1, 8) for _ in range(4)]
 
-def exact_matches(c: seq, g: seq) -> int:
+def exact_matches(c, g) -> int:
     return sum(a == b for a, b in zip(c, g))
 
-def near_matches(c: seq, g: seq):
+def near_matches(c, g):
     nc = Counter(a for a, b in zip(c, g) if a != b)
     ng = Counter(b for a, b in zip(c, g) if a != b)
     return sum((nc & ng).values())
@@ -21,8 +19,7 @@ def make_guess():
     return [int(i) for i in s.split()]
 
 def main():
-    code = make_code()
-    guess = ""
+    code, guess = make_code(), ""
     while guess != code:
         guess = make_guess()
         x = exact_matches(code[:], guess[:])
